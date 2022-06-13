@@ -1,11 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
 import { getList, saveLocal } from "../../services/StorageService";
 
 export const Animal = () => {
-  const [animalList, setAnimalList] = useState<IAnimal[]>([]);
+  const [animalList, setAnimalList] = useState<IAnimal[]>(getList);
 
   const [animal, setAnimal] = useState<IAnimal>({
     id: NaN,
@@ -19,8 +18,7 @@ export const Animal = () => {
   const params = useParams() as { id: string };
 
   useEffect(() => {
-    setAnimalList(getList<IAnimal>());
-    const tempList: IAnimal[] = getList();
+    const tempList: IAnimal[] = [...animalList];
     setAnimal(tempList[+params.id - 1]);
   }, []);
 
@@ -28,19 +26,10 @@ export const Animal = () => {
     if (animal.isFed === false) {
       const newDate = new Date().toISOString();
 
-      setAnimal({
-        id: animal.id,
-        name: animal.name,
-        latinName: animal.latinName,
-        yearOfBirth: animal.yearOfBirth,
-        shortDescription: animal.shortDescription,
-        isFed: true,
-        lastFed: newDate,
-      });
-      let tempList = [...animalList];
+      const tempList = [...animalList];
       tempList.map((obj) => {
         if (obj.id === animal.id) {
-          return (obj.isFed = true);
+          return (obj.isFed = true), (obj.lastFed = newDate);
         }
       });
       setAnimalList(tempList);

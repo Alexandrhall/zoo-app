@@ -1,13 +1,10 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
-import { getAnimals } from "../../services/getAnimals";
 import { getList, saveLocal, getAnimal } from "../../services/StorageService";
 
 export const Home = () => {
   const [animalList, setAnimalList] = useState<IAnimal[]>(getList);
-  let dataAPI: IAnimal[] = [];
 
   useEffect(() => {
     if (animalList.length === 0) {
