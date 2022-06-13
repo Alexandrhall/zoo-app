@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
+import { getList, saveLocal } from "../../services/StorageService";
 
 export const Animal = () => {
+  const [animalList, setAnimalList] = useState<IAnimal[]>([]);
+
   const [animal, setAnimal] = useState<IAnimal>({
     id: NaN,
     name: "",
@@ -13,17 +16,38 @@ export const Animal = () => {
     isFed: false,
     lastFed: "",
   });
-  const params = useParams();
+  const params = useParams() as { id: string };
 
   useEffect(() => {
-    axios
-      .get<IAnimal>(
-        "https://animals.azurewebsites.net/api/animals/" + params.id
-      )
-      .then((response) => {
-        setAnimal(response.data);
+    setAnimalList(getList<IAnimal>());
+    const tempList: IAnimal[] = getList();
+    setAnimal(tempList[+params.id - 1]);
+  }, []);
+
+  const fedAnimal = () => {
+    if (animal.isFed === false) {
+      const newDate = new Date();
+      let utcDate = newDate.toISOString();
+
+      setAnimal({
+        id: animal.id,
+        name: animal.name,
+        latinName: animal.latinName,
+        yearOfBirth: animal.yearOfBirth,
+        shortDescription: animal.shortDescription,
+        isFed: true,
+        lastFed: utcDate,
       });
-  }, [params.id]);
+      let tempList = [...animalList];
+      tempList.map((obj) => {
+        if (obj.id === animal.id) {
+          return (obj.isFed = true);
+        }
+      });
+      setAnimalList(tempList);
+      saveLocal(animalList);
+    }
+  };
 
   return (
     <>
@@ -31,22 +55,13 @@ export const Animal = () => {
       <span>{animal.isFed ? "Har ätit" : "Behöver matas"}</span>
       <button
         onClick={() => {
-          const newFeed = true;
-
-          setAnimal({
-            id: animal.id,
-            name: animal.name,
-            latinName: animal.latinName,
-            yearOfBirth: animal.yearOfBirth,
-            shortDescription: animal.shortDescription,
-            isFed: newFeed,
-            lastFed: animal.lastFed,
-          });
-          console.log(animal);
+          fedAnimal();
         }}
       >
         Mata djur
       </button>
+      <br />
+      <Link to={"/"}>Klicka här får gå tillbaka</Link>
     </>
   );
 };
