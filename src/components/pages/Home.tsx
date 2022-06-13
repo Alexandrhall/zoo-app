@@ -7,8 +7,6 @@ import { getList, saveLocal } from "../../services/StorageService";
 
 export const Home = () => {
   const [animalList, setAnimalList] = useState<IAnimal[]>([]);
-  let tempList: IAnimal[] = [];
-
   let dataAPI: IAnimal[] = [];
 
   useEffect(() => {
@@ -17,15 +15,15 @@ export const Home = () => {
     axios
       .get<IAnimal[]>("https://animals.azurewebsites.net/api/animals")
       .then((response) => {
-        tempList = response.data;
-        setAnimalList(tempList);
+        dataAPI = response.data;
+        setAnimalList(dataAPI);
       });
   }, []);
 
   // useEffect(() => {
   //   setAnimalList(getList<IAnimal>());
   //   const tempList: IAnimal[] = getList();
-  //   console.log(tempList);
+  //   console.log(tempList);s
 
   //   if (animalList.length === 0) {
   //     axios
@@ -38,7 +36,9 @@ export const Home = () => {
   //   saveLocal(animalList);
   // }, []);
 
-  saveLocal(animalList);
+  // saveLocal(animalList);
+
+  console.log(animalList);
 
   return (
     <>
