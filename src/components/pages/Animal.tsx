@@ -26,8 +26,7 @@ export const Animal = () => {
 
   const fedAnimal = () => {
     if (animal.isFed === false) {
-      const newDate = new Date();
-      let utcDate = newDate.toISOString();
+      const newDate = new Date().toISOString();
 
       setAnimal({
         id: animal.id,
@@ -36,7 +35,7 @@ export const Animal = () => {
         yearOfBirth: animal.yearOfBirth,
         shortDescription: animal.shortDescription,
         isFed: true,
-        lastFed: utcDate,
+        lastFed: newDate,
       });
       let tempList = [...animalList];
       tempList.map((obj) => {

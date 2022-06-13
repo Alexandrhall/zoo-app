@@ -11,14 +11,23 @@ export const Home = () => {
 
   useEffect(() => {
     setAnimalList(getList<IAnimal>());
-
     axios
       .get<IAnimal[]>("https://animals.azurewebsites.net/api/animals")
       .then((response) => {
-        dataAPI = response.data;
-        setAnimalList(dataAPI);
+        // dataAPI = response.data;
+        setAnimalList(response.data);
       });
   }, []);
+
+  // useEffect(() => {
+  //   setAnimalList(getList<IAnimal>());
+
+  //   if (animalList.length === 0) {
+  //     setAnimalList(dataAPI);
+  //   }
+
+  //   saveLocal(animalList);
+  // }, []);
 
   // useEffect(() => {
   //   setAnimalList(getList<IAnimal>());
@@ -38,7 +47,7 @@ export const Home = () => {
 
   // saveLocal(animalList);
 
-  console.log(animalList);
+  saveLocal(animalList);
 
   return (
     <>
