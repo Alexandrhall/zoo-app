@@ -1,0 +1,15 @@
+// import axios from "axios";
+// import { useState } from "react";
+// import { IAnimal } from "../models/IAnimal";
+
+// export const getAnimals = () => {
+//   let tempList: IAnimal[] = [];
+
+//   axios
+//     .get<IAnimal[]>("https://animals.azurewebsites.net/api/animals")
+//     .then((response) => {
+//       tempList = [...response.data];
+//     });
+
+//   return tempList;
+// };

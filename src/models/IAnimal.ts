@@ -4,6 +4,8 @@ export interface IAnimal {
   latinName: string;
   yearOfBirth: number;
   shortDescription: string;
+  isFed: boolean;
+  lastFed: string;
 }
 
 export interface IAnimalList {

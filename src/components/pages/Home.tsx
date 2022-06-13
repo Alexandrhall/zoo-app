@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { IAnimal, IAnimalList } from "../../models/IAnimal";
 
 export const Home = () => {
@@ -15,9 +16,16 @@ export const Home = () => {
 
   return (
     <>
-      <ul>
+      <ul className="animalList">
         {animalList.map((animal) => {
-          return <li key={animal.id}>{animal.name}</li>;
+          return (
+            <Link to={/animals/ + animal.id.toString()} key={animal.id}>
+              <span>{animal.name}</span>
+              <span>{animal.yearOfBirth}</span>
+              <span>{animal.isFed.toString()}</span>
+              <br />
+            </Link>
+          );
         })}
       </ul>
     </>
