@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IAnimal } from "../models/IAnimal";
 
-export const getAnimals = () => {
+export const getAnimals = async () => {
   let temp: IAnimal[] = [];
 
   axios

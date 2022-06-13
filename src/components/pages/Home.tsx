@@ -3,49 +3,19 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
 import { getAnimals } from "../../services/getAnimals";
-import { getList, saveLocal } from "../../services/StorageService";
+import { getList, saveLocal, getAnimal } from "../../services/StorageService";
 
 export const Home = () => {
-  const [animalList, setAnimalList] = useState<IAnimal[]>([]);
+  const [animalList, setAnimalList] = useState<IAnimal[]>(getList);
   let dataAPI: IAnimal[] = [];
 
   useEffect(() => {
-    setAnimalList(getList<IAnimal>());
-    axios
-      .get<IAnimal[]>("https://animals.azurewebsites.net/api/animals")
-      .then((response) => {
-        // dataAPI = response.data;
-        setAnimalList(response.data);
+    if (animalList.length === 0) {
+      getAnimal().then((data) => {
+        setAnimalList(data);
       });
+    }
   }, []);
-
-  // useEffect(() => {
-  //   setAnimalList(getList<IAnimal>());
-
-  //   if (animalList.length === 0) {
-  //     setAnimalList(dataAPI);
-  //   }
-
-  //   saveLocal(animalList);
-  // }, []);
-
-  // useEffect(() => {
-  //   setAnimalList(getList<IAnimal>());
-  //   const tempList: IAnimal[] = getList();
-  //   console.log(tempList);s
-
-  //   if (animalList.length === 0) {
-  //     axios
-  //       .get<IAnimal[]>("https://animals.azurewebsites.net/api/animals")
-  //       .then((response) => {
-  //         setAnimalList(response.data);
-  //       });
-  //   }
-
-  //   saveLocal(animalList);
-  // }, []);
-
-  // saveLocal(animalList);
 
   saveLocal(animalList);
 
