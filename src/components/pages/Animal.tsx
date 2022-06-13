@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { idText } from "typescript";
 import { IAnimal } from "../../models/IAnimal";
 
 export const Animal = () => {
@@ -24,7 +23,7 @@ export const Animal = () => {
       .then((response) => {
         setAnimal(response.data);
       });
-  }, []);
+  }, [params.id]);
 
   return (
     <>
