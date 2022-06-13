@@ -22,7 +22,8 @@ export const Home = () => {
             <Link to={/animals/ + animal.id.toString()} key={animal.id}>
               <span>{animal.name}</span>
               <span>{animal.yearOfBirth}</span>
-              <span>{animal.isFed.toString()}</span>
+              <span> {animal.isFed ? "Har ätit" : "Behöver matas"}</span>
+              <span> {animal.shortDescription}</span>
               <br />
             </Link>
           );

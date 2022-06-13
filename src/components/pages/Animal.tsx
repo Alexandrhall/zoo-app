@@ -28,8 +28,8 @@ export const Animal = () => {
 
   return (
     <>
-      <h3>animal works!</h3>
-      <span>{animal.name}</span>
+      <span>{animal.name}</span> <br />
+      <span>{animal.isFed ? "Har ätit" : "Behöver matas"}</span>
     </>
   );
 };
