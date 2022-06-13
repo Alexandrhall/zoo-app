@@ -1,12 +1,23 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.scss";
+import { Layout } from "./components/Layout";
+import { NotFound } from "./components/NotFound";
+import { Animal } from "./components/pages/Animal";
+import { Animals } from "./components/pages/Animals";
+import { Home } from "./components/pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hej</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}></Route>
+          <Route path="/animals" element={<Animals />}></Route>
+          <Route path="/animals/:id" element={<Animal />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
