@@ -13,7 +13,7 @@ export const Animal = () => {
     isFed: false,
     lastFed: "",
   });
-  let params = useParams();
+  const params = useParams();
 
   useEffect(() => {
     axios
@@ -29,6 +29,24 @@ export const Animal = () => {
     <>
       <span>{animal.name}</span> <br />
       <span>{animal.isFed ? "Har ätit" : "Behöver matas"}</span>
+      <button
+        onClick={() => {
+          const newFeed = true;
+
+          setAnimal({
+            id: animal.id,
+            name: animal.name,
+            latinName: animal.latinName,
+            yearOfBirth: animal.yearOfBirth,
+            shortDescription: animal.shortDescription,
+            isFed: newFeed,
+            lastFed: animal.lastFed,
+          });
+          console.log(animal);
+        }}
+      >
+        Mata djur
+      </button>
     </>
   );
 };

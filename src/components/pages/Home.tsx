@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
+import { getAnimals } from "../../services/getAnimals";
 
 export const Home = () => {
   const [animalList, setAnimalList] = useState<IAnimal[]>([]);
