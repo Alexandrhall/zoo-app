@@ -29,7 +29,7 @@ export const Animal = () => {
       const tempList = [...animalList];
       tempList.map((obj) => {
         if (obj.id === animal.id) {
-          return (obj.isFed = true), (obj.lastFed = newDate);
+          return (obj.isFed = true) + (obj.lastFed = newDate);
         }
       });
       setAnimalList(tempList);
