@@ -22,6 +22,10 @@ export const Animal = () => {
     setAnimal(tempList[+params.id - 1]);
   }, []);
 
+  useEffect(() => {
+    checkTime();
+  });
+
   const fedAnimal = () => {
     if (animal.isFed === false) {
       const newDate = new Date().toISOString();
@@ -29,13 +33,37 @@ export const Animal = () => {
       const tempList = [...animalList];
       tempList.map((obj) => {
         if (obj.id === animal.id) {
-          return (obj.isFed = true) + (obj.lastFed = newDate);
+          return (obj.isFed = true) && (obj.lastFed = newDate);
         }
+        return null;
       });
+
       setAnimalList(tempList);
       saveLocal(animalList);
     }
   };
+
+  const checkTime = () => {
+    console.log("checkTimeAnimal");
+
+    if (animal.isFed === true) {
+      const newDate = new Date();
+      const diff = Math.abs(newDate.getTime() - Date.parse(animal.lastFed));
+      const minutes = Math.ceil(diff / (1000 * 60));
+      if (minutes > 179) {
+        const tempList = [...animalList];
+        tempList.map((obj) => {
+          return (obj.isFed = false);
+        });
+        setAnimalList(tempList);
+        saveLocal(tempList);
+      }
+    }
+  };
+
+  setInterval(() => {
+    checkTime();
+  }, 1000 * 60);
 
   return (
     <>
