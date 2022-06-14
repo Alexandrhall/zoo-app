@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
 import { getList, saveLocal } from "../../services/StorageService";
+import "../../styles/Animal.scss";
 
 export const Animal = () => {
   const [animalList, setAnimalList] = useState<IAnimal[]>(getList);
