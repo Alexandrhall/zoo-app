@@ -20,7 +20,7 @@ export const Animal = () => {
   useEffect(() => {
     const tempList: IAnimal[] = [...animalList];
     setAnimal(tempList[+params.id - 1]);
-  }, []);
+  }, [params.id, animalList]);
 
   useEffect(() => {
     checkTime();

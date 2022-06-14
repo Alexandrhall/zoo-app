@@ -29,7 +29,7 @@ export const Home = () => {
         const diff = Math.abs(newDate.getTime() - Date.parse(animal.lastFed));
         const minutes = Math.ceil(diff / (1000 * 60));
         console.log(minutes);
-        if (minutes > 1) {
+        if (minutes > 179) {
           const tempList = [...animalList];
           tempList.map((obj) => {
             return (obj.isFed = false);
