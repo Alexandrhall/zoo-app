@@ -29,7 +29,6 @@ export const Home = () => {
         const newDate = new Date();
         const diff = Math.abs(newDate.getTime() - Date.parse(animal.lastFed));
         const minutes = Math.ceil(diff / (1000 * 60));
-        // console.log(minutes);
         if (minutes > 179) {
           const tempList = [...animalList];
           tempList.map((obj) => {
@@ -52,11 +51,23 @@ export const Home = () => {
         {animalList.map((animal) => {
           return (
             <Link to={/animals/ + animal.id.toString()} key={animal.id}>
-              <span>{animal.name}</span>
-              <span>{animal.yearOfBirth}</span>
-              <span> {animal.isFed ? "Har ätit" : "Behöver matas"}</span>
-              <span> {animal.shortDescription}</span>
-              <br />
+              <li className="animal">
+                <div className="yearAndMedicine">
+                  <span>Född: {animal.yearOfBirth}</span>
+                  <span>Medicin: {animal.medicine}</span>
+                </div>
+                <h3>{animal.name}</h3>
+                <p>{animal.latinName}</p>
+                <img
+                  src={animal.imageUrl}
+                  alt={animal.name}
+                  width="200px"
+                  height="150px"
+                />{" "}
+                <br />
+                <p className="animalDesc"> {animal.shortDescription}</p>
+                <p> {animal.isFed ? "Har ätit" : "Behöver matas"}</p>
+              </li>
             </Link>
           );
         })}

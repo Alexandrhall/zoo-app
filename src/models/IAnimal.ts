@@ -6,6 +6,9 @@ export interface IAnimal {
   shortDescription: string;
   isFed: boolean;
   lastFed: string;
+  imageUrl: string;
+  medicine: string;
+  longDescription: string;
 }
 
 export interface IAnimalList {

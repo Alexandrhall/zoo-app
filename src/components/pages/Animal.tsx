@@ -15,6 +15,9 @@ export const Animal = () => {
     shortDescription: "",
     isFed: false,
     lastFed: "",
+    imageUrl: "",
+    medicine: "",
+    longDescription: "",
   });
   const params = useParams() as { id: string };
 
@@ -68,17 +71,29 @@ export const Animal = () => {
 
   return (
     <>
-      <span>{animal.name}</span> <br />
-      <span>{animal.isFed ? "Har ätit" : "Behöver matas"}</span>
-      <button
-        onClick={() => {
-          fedAnimal();
-        }}
-      >
-        Mata djur
-      </button>
-      <br />
-      <Link to={"/"}>Klicka här får gå tillbaka</Link>
+      {/* <span>{animal.name}</span> <br />
+      <span>{animal.isFed ? "Har ätit" : "Behöver matas"}</span> */}
+      <div className="animalPage">
+        <h3>{animal.name}</h3>
+        <img
+          src={animal.imageUrl}
+          width="200px"
+          height="150px"
+          alt={animal.name}
+        />
+        <p>Född: {animal.yearOfBirth}</p>
+        <p className="desc"> {animal.longDescription}</p>
+        <p> {animal.isFed ? "Har ätit" : "Behöver matas"}</p>
+        <button
+          onClick={() => {
+            fedAnimal();
+          }}
+        >
+          Mata djur
+        </button>
+        <br />
+        <Link to={"/"}>Klicka här får gå tillbaka</Link>
+      </div>
     </>
   );
 };
