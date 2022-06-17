@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
 import { getList, saveLocal, getAnimal } from "../../services/StorageService";
-import "./../../styles/Home.scss";
 
 export const Home = () => {
   const [animalList, setAnimalList] = useState<IAnimal[]>(getList);
@@ -22,13 +21,13 @@ export const Home = () => {
   saveLocal(animalList);
 
   const checkTime = () => {
-    console.log("checkTimeHome");
-
     for (const animal of animalList) {
       if (animal.isFed === true) {
-        const newDate = new Date();
-        const diff = Math.abs(newDate.getTime() - Date.parse(animal.lastFed));
-        const minutes = Math.ceil(diff / (1000 * 60));
+        const newDate: Date = new Date();
+        const diff: number = Math.abs(
+          newDate.getTime() - Date.parse(animal.lastFed)
+        );
+        const minutes: number = Math.ceil(diff / (1000 * 60));
         if (minutes > 179) {
           const tempList = [...animalList];
           tempList.map((obj) => {

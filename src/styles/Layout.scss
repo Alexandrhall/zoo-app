@@ -8,17 +8,13 @@ html {
 
 .animal {
   width: 600px;
-  // height: 400px;
   height: 100%;
-  // background-color: #3d9970;
   border-radius: 10px;
-  // color: #282c34;
   color: beige;
   padding-top: 5px;
   padding-bottom: 5px;
-  // display: flex;
-  border: 1px solid #3d9970;
-  box-shadow: 1px 1px 1px 1px #20242b;
+  border: 0.5px #3d9970 solid;
+  box-shadow: 2px 2px 2px 1px #20242b;
   img {
     border-radius: 5px;
     box-shadow: 1px 1px 1px 1px #20242b;
@@ -31,20 +27,30 @@ html {
 .animalPage {
   color: beige;
   border: 1px solid #3d9970;
-  width: 50vw;
+  width: 1000px;
   margin: 0 auto;
   padding-bottom: 30px;
+  margin-top: 50px;
+  border-radius: 10px;
+  margin-bottom: 50px;
   button {
     margin-bottom: 10px;
   }
   .desc {
-    width: 600px;
+    width: 70%;
     margin: 0 auto;
     text-align: center;
+    padding-top: 15px;
   }
   img {
     border-radius: 5px;
     box-shadow: 1px 1px 1px 1px #20242b;
+  }
+  button {
+    background-color: beige;
+    border: none;
+    border-radius: 3px;
+    font-size: 14pt;
   }
 }
 
@@ -68,7 +74,7 @@ a {
 }
 
 .header {
-  height: 150px;
+  height: 100px;
   // background-color: rgb(141, 124, 97);
   color: beige;
   font-size: 36pt;
@@ -76,8 +82,16 @@ a {
 
 .yearAndMedicine {
   position: absolute;
-  width: 33%;
+  width: 570px;
   display: flex;
   justify-content: space-between;
   padding-left: 15px;
+}
+
+.animalYearMed {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+  padding: 25px 0px 0px 45px;
 }

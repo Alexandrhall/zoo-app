@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IAnimal } from "../../models/IAnimal";
 import { getList, saveLocal } from "../../services/StorageService";
-import "../../styles/Animal.scss";
 
 export const Animal = () => {
   const [animalList, setAnimalList] = useState<IAnimal[]>(getList);
@@ -48,12 +47,12 @@ export const Animal = () => {
   };
 
   const checkTime = () => {
-    console.log("checkTimeAnimal");
-
     if (animal.isFed === true) {
-      const newDate = new Date();
-      const diff = Math.abs(newDate.getTime() - Date.parse(animal.lastFed));
-      const minutes = Math.ceil(diff / (1000 * 60));
+      const newDate: Date = new Date();
+      const diff: number = Math.abs(
+        newDate.getTime() - Date.parse(animal.lastFed)
+      );
+      const minutes: number = Math.ceil(diff / (1000 * 60));
       if (minutes > 179) {
         const tempList = [...animalList];
         tempList.map((obj) => {
@@ -71,9 +70,11 @@ export const Animal = () => {
 
   return (
     <>
-      {/* <span>{animal.name}</span> <br />
-      <span>{animal.isFed ? "Har ätit" : "Behöver matas"}</span> */}
       <div className="animalPage">
+        <div className="animalYearMed">
+          <span>Född: {animal.yearOfBirth}</span>
+          <span>Medicin: {animal.medicine}</span>
+        </div>
         <h3>{animal.name}</h3>
         <img
           src={animal.imageUrl}
@@ -81,7 +82,6 @@ export const Animal = () => {
           height="150px"
           alt={animal.name}
         />
-        <p>Född: {animal.yearOfBirth}</p>
         <p className="desc"> {animal.longDescription}</p>
         <p> {animal.isFed ? "Har ätit" : "Behöver matas"}</p>
         <button
@@ -92,7 +92,7 @@ export const Animal = () => {
           Mata djur
         </button>
         <br />
-        <Link to={"/"}>Klicka här får gå tillbaka</Link>
+        <Link to={"/"}>Klicka här för gå tillbaka</Link>
       </div>
     </>
   );
