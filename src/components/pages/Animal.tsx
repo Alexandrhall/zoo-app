@@ -25,10 +25,6 @@ export const Animal = () => {
     setAnimal(tempList[+params.id - 1]);
   }, [params.id, animalList]);
 
-  useEffect(() => {
-    checkTime();
-  });
-
   const fedAnimal = () => {
     if (animal.isFed === false) {
       const newDate = new Date().toISOString();
@@ -63,6 +59,10 @@ export const Animal = () => {
       }
     }
   };
+
+  useEffect(() => {
+    checkTime();
+  });
 
   setInterval(() => {
     checkTime();

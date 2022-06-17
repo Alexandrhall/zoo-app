@@ -51,12 +51,17 @@ html {
     border: none;
     border-radius: 3px;
     font-size: 14pt;
+    cursor: pointer;
+    &:hover {
+      background-color: bisque;
+    }
   }
 }
 
 .animalDesc {
   width: 400px;
   margin: 0 auto;
+  margin-top: 15px;
 }
 
 .animalList {

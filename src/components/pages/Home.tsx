@@ -14,10 +14,6 @@ export const Home = () => {
     });
   });
 
-  useEffect(() => {
-    checkTime();
-  });
-
   saveLocal(animalList);
 
   const checkTime = () => {
@@ -39,6 +35,10 @@ export const Home = () => {
       }
     }
   };
+
+  useEffect(() => {
+    checkTime();
+  });
 
   setInterval(() => {
     checkTime();
@@ -63,7 +63,6 @@ export const Home = () => {
                   width="200px"
                   height="150px"
                 />{" "}
-                <br />
                 <p className="animalDesc"> {animal.shortDescription}</p>
                 <p> {animal.isFed ? "Har ätit" : "Behöver matas"}</p>
               </li>
